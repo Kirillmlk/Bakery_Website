@@ -1,4 +1,4 @@
-<script setup>
+<script>
 
 </script>
 
@@ -33,8 +33,8 @@
                     <i class="ri-close-line"></i>
                 </div>
 
-                <img src="assets/img/bread-4.png" alt="image" class="nav__img-1">
-                <img src="assets/img/bread-1.png" alt="image" class="nav__img-2">
+                <img src="{{ asset('img/bread-4.png') }}" alt="image" class="nav__img-1">
+                <img src="{{ asset('img/bread-1.png') }}" alt="image" class="nav__img-2">
             </div>
 
             <div class="nav__toggle" id="nav-toggle">

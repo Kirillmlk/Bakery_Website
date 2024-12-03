@@ -1,5 +1,5 @@
 <script setup>
-
+import {breadImages} from "@/assets/images.js";
 </script>
 
 <template>
@@ -8,7 +8,7 @@
 
         <div class="favorite__container container grid">
             <article class="favorite__card">
-                <img src="assets/img/favorite-bread-1.png" alt="image" class="favorite__img">
+                <img :src="breadImages.bread1" alt="Whole Grain Bread" class="favorite__img">
                 <div class="favorite__data">
                     <h2 class="favorite__title">Whole Grain</h2>
                     <span class="favorite__subtitle">Bread</span>
