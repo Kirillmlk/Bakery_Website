@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +53,8 @@
 
 <!--==================== MAIN ====================-->
 <main class="main">
+
+
     <!--==================== HOME ====================-->
     <section class="home section" id="home">
         <img src="assets/img/home-bg.jpg" alt="image" class="home__bg">
