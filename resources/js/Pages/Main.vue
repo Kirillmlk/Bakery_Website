@@ -8,18 +8,20 @@ import FavoriteSection from "@/Components/FavoriteSection.vue";
 import Visit from "@/Components/Visit.vue";
 import Footer from "@/Components/Footer.vue";
     export default {
-        components: {Footer, Visit, FavoriteSection, About, NewSection, Home, Header},
+        components: {MainLayout, Footer, Visit, FavoriteSection, About, NewSection, Home, Header},
         layout: MainLayout,
     }
 </script>
 
 <template>
+    <MainLayout>
     <Header></Header>
     <Home></Home>
     <NewSection></NewSection>
     <About></About>
     <FavoriteSection></FavoriteSection>
     <Visit></Visit>
+    </MainLayout>
     <Footer></Footer>
 </template>
 

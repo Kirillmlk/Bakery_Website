@@ -1,5 +1,14 @@
-<script setup>
+<script>
+import {breadImages} from "@/assets/images.js";
 
+export default {
+    name: "NewSection",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
@@ -52,8 +61,8 @@
                 </div>
             </div>
 
-            <img src="assets/img/bread-4.png" alt="image" class="footer__img-1">
-            <img src="assets/img/bread-3.png" alt="image" class="footer__img-2">
+            <img :src="breadImages.bread10" alt="image" class="footer__img-1">
+            <img :src="breadImages.bread9" alt="image" class="footer__img-2">
         </div>
 
         <span class="footer__copy">
@@ -66,6 +75,6 @@
     </a>
 </template>
 
-<style scoped>
+<style>
 
 </style>

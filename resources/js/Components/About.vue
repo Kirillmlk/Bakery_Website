@@ -1,5 +1,14 @@
-<script setup>
+<script>
+import {breadImages} from "@/assets/images.js";
 
+export default {
+    name: "NewSection",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
@@ -17,14 +26,14 @@
 
                 <a href="" class="button">Know More</a>
 
-                <img src="assets/img/bread-2.png" alt="image" class="about__bread">
+                <img :src="breadImages.bread8" alt="image" class="about__bread">
             </div>
 
-            <img src="assets/img/about-bread.png" alt="image" class="about__img">
+            <img :src="breadImages.bread11" alt="image" class="about__img">
         </div>
     </section>
 </template>
 
-<style scoped>
+<style>
 
 </style>

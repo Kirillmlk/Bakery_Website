@@ -1,5 +1,14 @@
 <script>
+import {breadImages} from "@/assets/images.js";
 
+export default {
+    name: "Header",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
@@ -33,8 +42,8 @@
                     <i class="ri-close-line"></i>
                 </div>
 
-                <img src="{{ asset('img/bread-4.png') }}" alt="image" class="nav__img-1">
-                <img src="{{ asset('img/bread-1.png') }}" alt="image" class="nav__img-2">
+                <img :src="breadImages.bread10" alt="image" class="nav__img-1">
+                <img :src="breadImages.bread7" alt="image" class="nav__img-2">
             </div>
 
             <div class="nav__toggle" id="nav-toggle">

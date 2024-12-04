@@ -1,5 +1,14 @@
-<script setup>
-import {breadImages} from "@/assets/images.js";
+<script>
+import { breadImages } from "@/assets/images.js";
+
+export default {
+    name: "FavoriteSection",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
@@ -14,64 +23,58 @@ import {breadImages} from "@/assets/images.js";
                     <span class="favorite__subtitle">Bread</span>
                     <h3 class="favorite__price">$6.00</h3>
                 </div>
-
                 <button class="favorite__button button"><i class="ri-add-line"></i></button>
             </article>
             <article class="favorite__card">
-                <img src="assets/img/favorite-bread-2.png" alt="image" class="favorite__img">
+                <img :src="breadImages.bread2" alt="Rye Bread" class="favorite__img">
+
                 <div class="favorite__data">
                     <h2 class="favorite__title">Rye</h2>
                     <span class="favorite__subtitle">Bread</span>
                     <h3 class="favorite__price">$8.00</h3>
                 </div>
-
                 <button class="favorite__button button"><i class="ri-add-line"></i></button>
             </article>
             <article class="favorite__card">
-                <img src="assets/img/favorite-bread-3.png" alt="image" class="favorite__img">
+                <img :src="breadImages.bread3" alt="White Bread" class="favorite__img">
                 <div class="favorite__data">
                     <h2 class="favorite__title">White</h2>
                     <span class="favorite__subtitle">Bread</span>
                     <h3 class="favorite__price">$3.00</h3>
                 </div>
-
                 <button class="favorite__button button"><i class="ri-add-line"></i></button>
             </article>
             <article class="favorite__card">
-                <img src="assets/img/favorite-bread-4.png" alt="image" class="favorite__img">
+                <img :src="breadImages.bread4" alt="Multigrain Bread" class="favorite__img">
                 <div class="favorite__data">
                     <h2 class="favorite__title">Multigrain</h2>
                     <span class="favorite__subtitle">Bread</span>
                     <h3 class="favorite__price">$5.00</h3>
                 </div>
-
                 <button class="favorite__button button"><i class="ri-add-line"></i></button>
             </article>
             <article class="favorite__card">
-                <img src="assets/img/favorite-bread-5.png" alt="image" class="favorite__img">
+                <img :src="breadImages.bread5" alt="Sourdough Bread" class="favorite__img">
                 <div class="favorite__data">
                     <h2 class="favorite__title">Sourdough</h2>
                     <span class="favorite__subtitle">Bread</span>
                     <h3 class="favorite__price">$7.00</h3>
                 </div>
-
                 <button class="favorite__button button"><i class="ri-add-line"></i></button>
             </article>
-
             <article class="favorite__card">
-                <img src="assets/img/favorite-bread-6.png" alt="image" class="favorite__img">
+                <img :src="breadImages.bread6" alt="French Bread" class="favorite__img">
                 <div class="favorite__data">
                     <h2 class="favorite__title">French</h2>
                     <span class="favorite__subtitle">Bread</span>
                     <h3 class="favorite__price">$3.00</h3>
                 </div>
-
                 <button class="favorite__button button"><i class="ri-add-line"></i></button>
             </article>
         </div>
-
     </section>
 </template>
+
 
 <style scoped>
 

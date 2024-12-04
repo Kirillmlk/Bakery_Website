@@ -1,11 +1,20 @@
-<script setup>
+<script>
+import {breadImages} from "@/assets/images.js";
 
+export default {
+    name: "NewSection",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
     <section class="visit section" id="visit">
         <div class="visit__container">
-            <img src="assets/img/visit-bg.jpg" alt="image" class="visit__bg">
+            <img :src="breadImages.bread17" alt="image" class="visit__bg">
             <div class="visit__shadow"></div>
 
             <div class="visit__content container grid">

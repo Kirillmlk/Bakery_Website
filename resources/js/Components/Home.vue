@@ -1,10 +1,19 @@
-<script setup>
+<script>
+import { breadImages } from "@/assets/images.js";
 
+export default {
+    name: "Home",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
     <section class="home section" id="home">
-        <img src="assets/img/home-bg.jpg" alt="image" class="home__bg">
+        <img :src="breadImages.bread15" alt="image" class="home__bg">
         <div class="home__shadow"></div>
 
         <div class="home__container container grid">
@@ -14,11 +23,11 @@
                 </h1>
                 <a href="#" class="button">Select Breads</a>
 
-                <img src="assets/img/bread-1.png" alt="image" class="home__bread">
+                <img :src="breadImages.bread7" alt="image" class="home__bread">
             </div>
 
             <div class="home__image">
-                <img src="assets/img/home-bread.png" alt="image" class="home__img">
+                <img :src="breadImages.bread12" alt="image" class="home__img">
             </div>
             <footer class="home__footer">
                 <div class="home__location">
@@ -43,6 +52,6 @@
     </section>
 </template>
 
-<style scoped>
+<style>
 
 </style>

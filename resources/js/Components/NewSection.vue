@@ -1,5 +1,14 @@
-<script setup>
+<script >
+import {breadImages} from "@/assets/images.js";
 
+export default {
+    name: "NewSection",
+    data() {
+        return {
+            breadImages,
+        };
+    },
+};
 </script>
 
 <template>
@@ -17,7 +26,7 @@
                         </p>
                     </div>
 
-                    <img src="assets/img/new-bread-1.png" alt="img" class="new__img">
+                    <img :src="breadImages.bread13" alt="img" class="new__img">
                 </article>
                 <article class="new__card">
                     <div class="new__data">
@@ -28,7 +37,7 @@
                         </p>
                     </div>
 
-                    <img src="assets/img/new-bread-2.png" alt="img" class="new__img">
+                    <img :src="breadImages.bread14" alt="img" class="new__img">
                 </article>
                 <article class="new__card">
                     <div class="new__data">
@@ -39,7 +48,7 @@
                         </p>
                     </div>
 
-                    <img src="assets/img/new-bread-3.png" alt="img" class="new__img">
+                    <img :src="breadImages.bread16" alt="img" class="new__img">
                 </article>
             </div>
             <a href="#" class="new__button button">See More Breads</a>
