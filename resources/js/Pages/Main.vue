@@ -15,7 +15,7 @@ import Footer from "@/Components/Footer.vue";
 
 <template>
     <MainLayout>
-    <Header></Header>
+        <Header :canLogin="true" :canRegister="true" />
     <Home></Home>
     <NewSection></NewSection>
     <About></About>

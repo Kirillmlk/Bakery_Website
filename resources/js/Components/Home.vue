@@ -1,5 +1,8 @@
 <script>
+
+
 import { breadImages } from "@/assets/images.js";
+import ScrollReveal from 'scrollreveal';
 
 export default {
     name: "Home",
@@ -8,6 +11,7 @@ export default {
             breadImages,
         };
     },
+
 };
 </script>
 

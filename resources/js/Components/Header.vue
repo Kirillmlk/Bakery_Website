@@ -1,24 +1,39 @@
 <script>
 import {breadImages} from "@/assets/images.js";
+import {Head, Link} from "@inertiajs/vue3";
+import { defineComponent } from 'vue';
+
 
 export default {
     name: "Header",
+    components: {Link, Head},
     data() {
         return {
             breadImages,
         };
     },
+    props: {
+        canLogin: {
+            type: Boolean,
+            required: true,
+        },
+        canRegister: {
+            type: Boolean,
+            required: true,
+        },
+    },
 };
 </script>
 
 <template>
-    <header class="header" id="header">
+    <header class="header" id="header" can-login can-register>
         <nav class="nav container">
             <a href="#" class="nav__logo">Bakery</a>
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
+
                     <li class="nav__items">
-                        <a href="#home" class="nav__link active-link ">Home</a>
+                        <a href="#home" class="nav__link active-link">Home</a>
                     </li>
 
                     <li class="nav__items">
@@ -35,6 +50,34 @@ export default {
 
                     <li class="nav__items">
                         <a href="#visit" class="nav__link">Location</a>
+                    </li>
+
+                    <li v-if="canLogin" class="nav__items nav__items--auth">
+                        <template v-if="$page.props.auth.user" class="nav__link">
+                            <Link
+                                :href="route('dashboard')"
+                                class="nav__link nav__link--auth"
+                            >
+                                Dashboard
+                            </Link>
+                        </template>
+
+                        <template v-else class="nav__link">
+                            <Link
+                                :href="route('login')"
+                                class="nav__link nav__link--auth"
+                            >
+                                Log in
+                            </Link>
+
+                            <Link
+                                v-if="canRegister"
+                                :href="route('register')"
+                                class="nav__link nav__link--auth ms-10"
+                            >
+                                Register
+                            </Link>
+                        </template>
                     </li>
                 </ul>
 
@@ -54,5 +97,5 @@ export default {
 </template>
 
 <style scoped>
-
+/* Стили для компонента */
 </style>
