@@ -11,6 +11,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.7.0/remixicon.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- ScrollReveal CDN -->
     <script src="https://unpkg.com/scrollreveal"></script>

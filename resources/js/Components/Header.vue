@@ -45,7 +45,12 @@ export default {
                     </li>
 
                     <li class="nav__items">
-                        <a href="#favorite" class="nav__link">Favorites</a>
+                        <Link
+                            :href="route('post.index')"
+                            class="nav__link"
+                        >
+                            Menu
+                        </Link>
                     </li>
 
                     <li class="nav__items">
