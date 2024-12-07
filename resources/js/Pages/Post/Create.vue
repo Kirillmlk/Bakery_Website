@@ -28,14 +28,14 @@ export default {
 
     methods: {
         handleFileUpload(event) {
-            this.image = event.target.files[0]; // Сохраняем файл
+            this.image = event.target.files[0];
         },
         store() {
             const formData = new FormData();
             formData.append('title', this.title);
             formData.append('description', this.description);
             formData.append('price', this.price);
-            formData.append('image', this.image); // Добавляем файл в FormData
+            formData.append('image', this.image);
 
             this.$inertia.post('/posts', formData);
         }
@@ -70,6 +70,9 @@ export default {
                     type="submit">
                     Store
                 </button>
+            </div>
+            <div class="mb-4">
+                <Link :href="route('post.index')" class=" text-sky-500 text-sm mb-8">Back</Link>
             </div>
         </form>
     </div>
