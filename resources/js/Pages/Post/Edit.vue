@@ -17,7 +17,8 @@ export default {
     },
 
     props: [
-        'post'
+        'post',
+        'errors'
     ],
 
     // methods: {
@@ -55,12 +56,15 @@ export default {
         <form @submit.prevent="update">
             <div class="mb-4">
                 <input v-model="title" class="w-full rounded-full border-gray-300 text-black" type="text" placeholder="title">
+                <div v-if="errors.title" class="text-red-500 text-sm">{{ errors.title }}</div>
             </div>
             <div class="mb-4">
                 <textarea v-model="description" class="w-full rounded border-gray-300 text-black" placeholder="content"></textarea>
+                <div v-if="errors.description" class="text-red-500 text-sm">{{ errors.description }}</div>
             </div>
             <div class="mb-4">
                 <input v-model="price" class="w-full rounded-full border-gray-300 text-black" type="text" placeholder="price">
+                <div v-if="errors.price" class="text-red-500 text-sm">{{ errors.price }}</div>
             </div>
             <div class="mb-4">
                 <input
@@ -69,6 +73,7 @@ export default {
                     type="file"
                     placeholder="image"
                 >
+                <div v-if="errors.image" class="text-red-500 text-sm">{{ errors.image }}</div>
             </div>
             <div class="mb-4">
                 <button
