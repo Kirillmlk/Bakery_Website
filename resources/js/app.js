@@ -51,40 +51,40 @@ const linkAction = () => {
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
 
-const blurHeader = () => {
-    const header = document.getElementById('header')
-    // Заменили this.scrollY на window.scrollY
-    window.scrollY >= 50 ? header.classList.add('blur-header') : header.classList.remove('blur-header')
-}
-window.addEventListener('scroll', blurHeader)
+// const blurHeader = () => {
+//     const header = document.getElementById('header')
+//     // Заменили this.scrollY на window.scrollY
+//     window.scrollY >= 50 ? header.classList.add('blur-header') : header.classList.remove('blur-header')
+// }
+// window.addEventListener('scroll', blurHeader)
 
 
-const scrollUp = () => {
-    const scrollUp = document.getElementById('scroll-up')
-    // Заменили this.scrollY на window.scrollY
-    window.scrollY >= 350 ? scrollUp.classList.add('show-scroll') : scrollUp.classList.remove('show-scroll')
-}
-window.addEventListener('scroll', scrollUp)
+// const scrollUp = () => {
+//     const scrollUp = document.getElementById('scroll-up')
+//     // Заменили this.scrollY на window.scrollY
+//     window.scrollY >= 350 ? scrollUp.classList.add('show-scroll') : scrollUp.classList.remove('show-scroll')
+// }
+// window.addEventListener('scroll', scrollUp)
+//
+// const sections = document.querySelectorAll('section[id]')
 
-const sections = document.querySelectorAll('section[id]')
-
-const scrollActive = () => {
-    const scrollDown = window.scrollY
-
-    sections.forEach(current => {
-        const sectionHeight = current.offsetHeight,
-            sectionTop = current.offsetTop - 58,
-            sectionId = current.getAttribute('id'),
-            sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
-
-        if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
-            sectionsClass.classList.add('active-link')
-        } else {
-            sectionsClass.classList.remove('active-link')
-        }
-    })
-}
-window.addEventListener('scroll', scrollActive)
+// const scrollActive = () => {
+//     const scrollDown = window.scrollY
+//
+//     sections.forEach(current => {
+//         const sectionHeight = current.offsetHeight,
+//             sectionTop = current.offsetTop - 58,
+//             sectionId = current.getAttribute('id'),
+//             sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+//
+//         if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
+//             sectionsClass.classList.add('active-link')
+//         } else {
+//             sectionsClass.classList.remove('active-link')
+//         }
+//     })
+// }
+// window.addEventListener('scroll', scrollActive)
 
 
 const sr = ScrollReveal({

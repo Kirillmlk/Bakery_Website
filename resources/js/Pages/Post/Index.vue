@@ -9,6 +9,12 @@ export default {
     components: {
         Link,
     },
+
+    methods: {
+        deletePost(id) {
+            this.$inertia.delete(`/posts/${id}`);
+        }
+    }
 }
 </script>
 
@@ -33,16 +39,19 @@ export default {
                     <img :src="`/storage/${post.image}`" alt="Post Image" class="w-full mt-4">
                 </div>
 
-                <div class=" text-sky-500 text-sm mb-8">
+                <div class="text-sky-500 text-sm mb-8">
                     <Link :href="route('post.show', post.id)">Post Show</Link>
                 </div>
-                <div class=" text-sky-500 text-sm mb-8">
+                <div class="text-sky-500 text-sm mb-8">
                     <Link :href="route('post.edit', post.id)">Post Edit</Link>
+                </div>
+                <div class="text-sm mb-8">
+                    <p @click="deletePost(post.id)" class="cursor-pointer text-red-500">Post Delete</p>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped>
+<style>
 </style>
