@@ -32,8 +32,12 @@ export default {
                 <div v-if="post.image">
                     <img :src="`/storage/${post.image}`" alt="Post Image" class="w-full mt-4">
                 </div>
-                <div>
+
+                <div class=" text-sky-500 text-sm mb-8">
                     <Link :href="route('post.show', post.id)">Post Show</Link>
+                </div>
+                <div class=" text-sky-500 text-sm mb-8">
+                    <Link :href="route('post.edit', post.id)">Post Edit</Link>
                 </div>
             </div>
         </div>
