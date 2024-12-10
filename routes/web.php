@@ -18,16 +18,16 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return inertia('Main', [
+    return Inertia::render('Main', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
-    return inertia('Dashboard');
+    return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -42,6 +42,6 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
-Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
 require __DIR__.'/auth.php';

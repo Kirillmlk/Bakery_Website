@@ -5,6 +5,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import MainLayout from "@/Layouts/MainLayout.vue";
 
 defineProps({
     status: {
@@ -22,7 +23,8 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
+    <MainLayout>
+        <GuestLayout>
         <Head title="Forgot Password" />
 
         <div class="mb-4 text-sm text-gray-600">
@@ -57,5 +59,6 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
-    </GuestLayout>
+        </GuestLayout>
+    </MainLayout>
 </template>
