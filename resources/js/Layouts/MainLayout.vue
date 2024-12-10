@@ -15,11 +15,13 @@ export default {
 </script>
 
 <template>
+    <Header can-register="" can-login=""></Header>
     <div>
         <main class="main">
             <slot />
         </main>
     </div>
+
 </template>
 
 <style >

@@ -28,7 +28,11 @@ export default {
 <template>
     <header class="header" id="header" can-login can-register>
         <nav class="nav container">
-            <a href="#" class="nav__logo">Bakery</a>
+
+            <a href="/" class="nav__logo">
+                Bakery
+            </a>
+
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
 
