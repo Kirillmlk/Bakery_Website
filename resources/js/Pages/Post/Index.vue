@@ -1,5 +1,6 @@
 <script>
-import { Link } from "@inertiajs/vue3";
+import {Link} from "@inertiajs/vue3";
+import MainLayout from "@/Layouts/MainLayout.vue";
 
 export default {
     name: "Index",
@@ -7,6 +8,7 @@ export default {
     props: ['posts'],
 
     components: {
+        MainLayout,
         Link,
     },
 
@@ -19,38 +21,34 @@ export default {
 </script>
 
 <template>
-    <div class="w-96 mx-auto pt-8">
-        <h1 class="text-lg mb-8">Post Index</h1>
-        <div class="mb-8">
-            <Link :href="route('post.create')"
-                  class="hover:bg-white hover:text-sky-500 block p-2 w-32 border border-sky-500 bg-sky-500 rounded-full text-center text-white">
-                Add post
-            </Link>
-        </div>
-        <div v-if="posts">
-            <div class="mt-8 pt-8 border-t border-gray-400" v-for="post in posts" :key="post.id">
-                <div>id: {{ post.id }}</div>
-                <div>title: {{ post.title }}</div>
-                <div>description: {{ post.description }}</div>
-                <div>price: {{ post.price }}</div>
-                <div>created_at: {{ post.date }}</div>
-                <!-- Отображение изображения -->
-                <div v-if="post.image">
-                    <img :src="`/storage/${post.image}`" alt="Post Image" class="w-full mt-4">
-                </div>
-
-                <div class="text-sky-500 text-sm mb-8">
-                    <Link :href="route('post.show', post.id)">Post Show</Link>
-                </div>
-                <div class="text-sky-500 text-sm mb-8">
-                    <Link :href="route('post.edit', post.id)">Post Edit</Link>
-                </div>
-                <div class="text-sm mb-8">
-                    <p @click="deletePost(post.id)" class="cursor-pointer text-red-500">Post Delete</p>
-                </div>
+    <MainLayout>
+        <section class="favorite section" id="favorite">
+            <h2 class="section__title">Menu</h2>
+            <div class="mb-8 flex justify-center">
+                <Link :href="route('post.create')"
+                      class="hover:bg-white hover:text-sky-500 block p-2 w-32 border border-sky-500 bg-sky-500 rounded-full text-center text-white">
+                    Add post
+                </Link>
             </div>
-        </div>
-    </div>
+
+            <div v-if="posts" class="favorite__container container grid">
+                <article v-for="post in posts" :key="post.id" class="favorite__card">
+                    <div v-if="post.image">
+                        <img :src="`/storage/${post.image}`" alt="Whole Grain Bread" class="favorite__img">
+                    </div>
+                    <div class="favorite__data">
+                        <h2 class="favorite__title">{{ post.title }}</h2>
+                        <span class="favorite__subtitle">{{ post.description }}</span>
+                        <h3 class="favorite__price">${{ post.price }}</h3>
+                    </div>
+
+                    <button class="favorite__button button"><i class="ri-add-line"></i></button>
+                    <Link :href="route('post.show', post.id)">More</Link>
+
+                </article>
+            </div>
+        </section>
+    </MainLayout>
 </template>
 
 <style>
