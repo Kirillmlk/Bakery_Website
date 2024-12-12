@@ -2,14 +2,13 @@
 import {breadImages} from "@/assets/images.js";
 import {Head, Link} from "@inertiajs/vue3";
 
-
 export default {
     name: "Header",
-    components:
-        {Link, Head},
+    components: {Link, Head},
     methods: {
         isAdmin() {
-            return this.userRole === 'admin';
+            // Проверяем роль пользователя через $page.props.auth.user.role
+            return this.$page.props.auth.user && this.$page.props.auth.user.role === 'admin';
         },
     },
     data() {
@@ -18,7 +17,6 @@ export default {
         };
     },
     props: {
-
         canLogin: {
             type: Boolean,
             required: true,
