@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -43,5 +44,10 @@ Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/menu', [MenuController::class, 'index'])->name('admin.index');
+
+});
 
 require __DIR__.'/auth.php';

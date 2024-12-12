@@ -1,18 +1,24 @@
 <script>
 import {breadImages} from "@/assets/images.js";
 import {Head, Link} from "@inertiajs/vue3";
-import { defineComponent } from 'vue';
 
 
 export default {
     name: "Header",
-    components: {Link, Head},
+    components:
+        {Link, Head},
+    methods: {
+        isAdmin() {
+            return this.userRole === 'admin';
+        },
+    },
     data() {
         return {
             breadImages,
         };
     },
     props: {
+
         canLogin: {
             type: Boolean,
             required: true,
@@ -42,6 +48,15 @@ export default {
 
                     <li class="nav__items">
                         <a href="#new" class="nav__link">News</a>
+                    </li>
+
+                    <li class="nav__items" v-if="isAdmin()">
+                        <Link
+                            :href="route('admin.index')"
+                            class="nav__link"
+                        >
+                            Admin
+                        </Link>
                     </li>
 
                     <li class="nav__items">
@@ -106,5 +121,4 @@ export default {
 </template>
 
 <style scoped>
-/* Стили для компонента */
 </style>

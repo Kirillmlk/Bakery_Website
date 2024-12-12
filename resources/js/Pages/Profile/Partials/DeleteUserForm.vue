@@ -7,6 +7,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import { nextTick, ref } from 'vue';
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);
@@ -49,6 +50,9 @@ const closeModal = () => {
         </header>
 
         <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+            Log Out
+        </ResponsiveNavLink>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="p-6">
