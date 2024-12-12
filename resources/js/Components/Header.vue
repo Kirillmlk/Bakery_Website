@@ -64,10 +64,10 @@ export default {
                     <li v-if="canLogin" class="nav__items nav__items--auth">
                         <template v-if="$page.props.auth.user" class="nav__link">
                             <Link
-                                :href="route('dashboard')"
+                                :href="route('profile.edit')"
                                 class="nav__link nav__link--auth"
                             >
-                                Dashboard
+                                Profile
                             </Link>
                         </template>
 

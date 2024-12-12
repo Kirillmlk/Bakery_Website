@@ -16,7 +16,7 @@ export default {
 
 <template>
     <Header can-register="" can-login=""></Header>
-    <div>
+    <div >
         <main class="main">
             <slot />
         </main>
