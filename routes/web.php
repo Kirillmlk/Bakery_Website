@@ -35,6 +35,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin', [MenuController::class, 'index'])->name('admin.index');
+    });
 });
 
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
@@ -43,11 +47,7 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/menu', [MenuController::class, 'index'])->name('admin.index');
-
-});
 
 require __DIR__.'/auth.php';

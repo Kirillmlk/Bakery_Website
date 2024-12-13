@@ -20,6 +20,9 @@ const form = useForm({
     name: user.name,
     email: user.email,
 });
+function isAdmin() {
+    return user && user.role === "admin";
+}
 </script>
 
 <template>
@@ -30,6 +33,10 @@ const form = useForm({
             <p class="mt-1 text-sm text-gray-600">
                 Update your account's profile information and email address.
             </p>
+            <div>
+                <p v-if="isAdmin()" class="text-black"><strong>Your role is Admin</strong></p>
+            </div>
+
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">

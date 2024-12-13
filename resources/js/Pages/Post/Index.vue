@@ -15,7 +15,10 @@ export default {
     methods: {
         deletePost(id) {
             this.$inertia.delete(`/posts/${id}`);
-        }
+        },
+        isAdmin() {
+            return this.$page.props.auth.user && this.$page.props.auth.user.role === 'admin';
+        },
     }
 }
 </script>
@@ -24,7 +27,7 @@ export default {
     <MainLayout>
         <section class="favorite section" id="favorite">
             <h2 class="section__title">Menu</h2>
-            <div class="mb-8 flex justify-center">
+            <div class="mb-8 flex justify-center" v-if="isAdmin()">
                 <Link :href="route('post.create')"
                       class="hover:bg-white hover:text-sky-500 block p-2 w-32 border border-sky-500 bg-sky-500 rounded-full text-center text-white">
                     Add post
@@ -32,7 +35,7 @@ export default {
             </div>
 
             <div v-if="posts" class="favorite__container container grid">
-                <article v-for="post in posts" :key="post.id" class="favorite__card">
+                <article v-for="post in posts" :key="post.id" class="favorite__card flex flex-col justify-between h-full">
                     <div v-if="post.image">
                         <img :src="`/storage/${post.image}`" alt="Whole Grain Bread" class="favorite__img">
                     </div>
@@ -43,8 +46,16 @@ export default {
                     </div>
 
                     <button class="favorite__button button"><i class="ri-add-line"></i></button>
-                    <Link :href="route('post.show', post.id)">More</Link>
 
+                    <div class="mt-auto text-left">
+                        <div class="text-sm mb-2">
+                            <p @click="deletePost(post.id)" class="cursor-pointer text-red-500">Post Delete</p>
+                        </div>
+                        <div class="text-sky-500 text-sm mb-2" v-if="isAdmin()">
+                            <Link :href="route('post.edit', post.id)"> Edit</Link>
+                        </div>
+                        <Link :href="route('post.show', post.id)" class="text-sky-500 hover:underline">More</Link>
+                    </div>
                 </article>
             </div>
         </section>
