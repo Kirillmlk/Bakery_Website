@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -48,6 +49,13 @@ Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+//    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+//    Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+//    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+});
 
 
 require __DIR__.'/auth.php';
