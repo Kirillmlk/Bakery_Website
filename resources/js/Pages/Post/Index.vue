@@ -5,7 +5,7 @@ import MainLayout from "@/Layouts/MainLayout.vue";
 export default {
     name: "Index",
 
-    props: ['posts'],
+    props: ['posts'], postId: Number,
 
     components: {
         MainLayout,
@@ -13,6 +13,12 @@ export default {
     },
 
     methods: {
+        addToCart(postId) {
+            this.$inertia.post('/cart', {
+                post_id: postId,
+                quantity: 1, // можно передать количество товара
+            });
+        },
         deletePost(id) {
             this.$inertia.delete(`/posts/${id}`);
         },
@@ -45,7 +51,10 @@ export default {
                         <h3 class="favorite__price">${{ post.price }}</h3>
                     </div>
 
-                    <button class="favorite__button button"><i class="ri-add-line"></i></button>
+
+                    <button @click="addToCart(post.id)" class="favorite__button button">
+                        <i class="ri-add-line"></i>
+                    </button>
 
                     <div class="mt-auto text-left">
                         <div class="text-sm mb-2">

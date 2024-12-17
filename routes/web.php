@@ -37,6 +37,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
     Route::middleware('admin')->group(function () {
         Route::get('/admin', [MenuController::class, 'index'])->name('admin.index');
     });
@@ -50,12 +55,6 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.ed
 Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-//    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-//    Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
-//    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-});
 
 
 require __DIR__.'/auth.php';
