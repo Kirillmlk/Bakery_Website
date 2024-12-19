@@ -16,14 +16,14 @@ export default {
         addToCart(postId) {
             this.$inertia.post('/cart', {
                 post_id: postId,
-                quantity: 1, // можно передать количество товара
+                quantity: 1,
             });
         },
         deletePost(id) {
             this.$inertia.delete(`/posts/${id}`);
         },
         isAdmin() {
-            return this.$page.props.auth.user && this.$page.props.auth.user.role === 'admin';
+            return this.$page.props.auth.user?.role === 'admin';
         },
     }
 }
@@ -56,13 +56,12 @@ export default {
                         <i class="ri-add-line"></i>
                     </button>
 
-                    <div class="mt-auto text-left">
-                        <div class="text-sm mb-2">
-                            <p @click="deletePost(post.id)" class="cursor-pointer text-red-500">Post Delete</p>
-                        </div>
-                        <div class="text-sky-500 text-sm mb-2" v-if="isAdmin()">
-                            <Link :href="route('post.edit', post.id)"> Edit</Link>
-                        </div>
+                    <div class="mt-auto text-left" v-if="isAdmin()">
+                        <p @click="deletePost(post.id)" class="cursor-pointer text-red-500">Post Delete</p>
+                        <Link :href="route('post.edit', post.id)" class="text-sky-500 text-sm mb-2">Edit</Link>
+                    </div>
+
+                    <div>
                         <Link :href="route('post.show', post.id)" class="text-sky-500 hover:underline">More</Link>
                     </div>
                 </article>

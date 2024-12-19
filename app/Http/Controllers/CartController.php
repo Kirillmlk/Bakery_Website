@@ -40,7 +40,6 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    // Обновление количества товара
     public function update(Request $request, $id)
     {
         $request->validate(['quantity' => 'required|integer|min:1']);
@@ -51,7 +50,6 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    // Удаление товара из корзины
     public function destroy($id)
     {
         $cartItem = Cart::where('user_id', auth()->id())->findOrFail($id);

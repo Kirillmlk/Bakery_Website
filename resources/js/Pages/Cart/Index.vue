@@ -22,9 +22,30 @@ export default {
         removeItem(id) {
             this.$inertia.delete(`/cart/${id}`);
         },
+        placeOrder() {
+            // Отправляем запрос на создание заказа
+            const orderData = this.cartItems.map(item => ({
+                post_id: item.post.id,
+                quantity: item.quantity,
+                price: item.post.price,
+                total_price: item.post.price * item.quantity,
+            }));
+
+            this.$inertia.post('/orders', {order_items: orderData})
+                .then(response => {
+                    if (response.props.success) {
+                        // Если заказ успешно создан, редиректим на страницу с подтверждением
+                        this.$inertia.visit('/order/confirmation');
+                    } else {
+                        // Выводим ошибку, если что-то пошло не так
+                        alert('Error placing the order. Please try again.');
+                    }
+                });
+        },
     },
 };
 </script>
+
 
 <template>
     <MainLayout>
@@ -36,7 +57,6 @@ export default {
                     :key="item.id"
                     class="flex justify-between items-center border-b py-2"
                 >
-                    <!-- Картинка слева -->
                     <div class="flex-shrink-0">
                         <div v-if="item.post.image">
                             <img
@@ -47,11 +67,10 @@ export default {
                         </div>
                     </div>
 
-                    <!-- Оставшаяся информация справа -->
                     <div class="flex-grow ml-4">
                         <h3 class="text-lg font-semibold">{{ item.post.title }}</h3>
                         <p class="text-gray-400"><strong>Quantity:</strong> {{ item.quantity }}</p>
-                        <p class="text-gray-400"><strong>Quantity:</strong> {{ item.post.description }}</p>
+                        <p class="text-gray-400"><strong>Description:</strong> {{ item.post.description }}</p>
                         <p class="text-gray-400"><strong>Price:</strong> ${{ item.post.price }}</p>
                         <p class="text-gray-400"><strong>Total:</strong> ${{ (item.post.price * item.quantity).toFixed(2) }}</p>
                     </div>
@@ -76,15 +95,23 @@ export default {
                 <div class="mt-4 text-right">
                     <p class="text-lg font-semibold">Total amount: ${{ totalPrice.toFixed(2) }}</p>
                 </div>
+
+                <div class="mt-4 text-center">
+                    <button
+                        @click="placeOrder"
+                        class="bg-green-500 text-white p-2 rounded-lg"
+                    >
+                        Place Order
+                    </button>
+                </div>
             </div>
-            <p v-else>Your cart is empty</p>
+            <p class="text-center" v-else>Your cart is empty</p>
         </div>
         <div class="mt-4 text-center">
             <Link :href="route('post.index')" class="text-sky-500 text-base">Back</Link>
         </div>
     </MainLayout>
 </template>
-
 <style>
 
 </style>
