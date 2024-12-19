@@ -7,12 +7,18 @@
                 <strong>{{ item.product_name }}</strong> x{{ item.quantity }} - {{ item.total_price }} руб.
             </li>
         </ul>
-        <p><strong>Общая сумма: </strong>{{ order.total_price }} руб.</p>
+        <p><strong>Total price: </strong>{{ order.total_price }} руб.</p>
+    </div>
+    <div class="mb-4">
+        <Link :href="route('post.index')" class=" text-sky-500 text-sm mb-8">Back</Link>
     </div>
 </template>
 
 <script>
+import {Link} from "@inertiajs/vue3";
+
 export default {
+    components: {Link},
     props: {
         order: Object,
     },

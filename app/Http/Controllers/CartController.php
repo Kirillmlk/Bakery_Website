@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\CartRequest;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 
@@ -16,13 +17,9 @@ class CartController extends Controller
             'cartItems' => $cartItems,
         ]);
     }
-    public function store(Request $request)
-    {
-        $request->validate([
-            'post_id' => 'required|exists:posts,id',
-            'quantity' => 'nullable|integer|min:1',
-        ]);
 
+    public function store(CartRequest $request)
+    {
         $cartItem = Cart::where('user_id', auth()->id())
             ->where('post_id', $request->post_id)
             ->first();
@@ -40,10 +37,8 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    public function update(Request $request, $id)
+    public function update(CartRequest $request, $id)
     {
-        $request->validate(['quantity' => 'required|integer|min:1']);
-
         $cartItem = Cart::where('user_id', auth()->id())->findOrFail($id);
         $cartItem->update(['quantity' => $request->quantity]);
 

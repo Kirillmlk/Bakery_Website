@@ -50,7 +50,7 @@ export default {
 
                     <li class="nav__items" v-if="isAdmin()">
                         <Link
-                            :href="route('admin.index')"
+                            :href="route('admin.orders.index')"
                             class="nav__link"
                         >
                             Admin
@@ -100,6 +100,15 @@ export default {
                                 Register
                             </Link>
                         </template>
+                    </li>
+
+                    <li class="nav__items">
+                        <Link
+                            :href="route('cart.index')"
+                            class="nav__link"
+                        >
+                            Cart
+                        </Link>
                     </li>
                 </ul>
 

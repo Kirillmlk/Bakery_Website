@@ -44,7 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
     Route::middleware('admin')->group(function () {
-        Route::get('/admin', [MenuController::class, 'index'])->name('admin.index');
+        Route::get('/admin/orders', [MenuController::class, 'index'])->name('admin.orders.index');
     });
 });
 

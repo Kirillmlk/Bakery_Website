@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Requests\StoreOrderRequest;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Post;
@@ -10,14 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        $request->validate([
-            'order_items' => 'required|array',
-            'order_items.*.post_id' => 'required|exists:posts,id',
-            'order_items.*.quantity' => 'required|integer|min:1',
-            'order_items.*.total_price' => 'required|numeric',
-        ]);
+        // Валидация уже выполнена через FormRequest
 
         // Создание нового заказа
         $order = Order::create([
@@ -27,8 +25,7 @@ class OrderController extends Controller
 
         // Создание элементов заказа
         foreach ($request->order_items as $item) {
-            // Получаем товар по ID
-            $post = Post::find($item['post_id']); // Здесь $item['post_id'] — это ID товара
+            $post = Post::find($item['post_id']);
 
             OrderItem::create([
                 'order_id' => $order->id,
@@ -36,12 +33,22 @@ class OrderController extends Controller
                 'quantity' => $item['quantity'],
                 'price' => $item['price'],
                 'total_price' => $item['total_price'],
-                'product_name' => $post->title, // Получаем название товара
+                'product_name' => $post->title,
             ]);
         }
 
+        // Очистка корзины после создания заказа
+        $this->clearCart();
+
+        // Возвращаем данные для отображения страницы подтверждения
         return inertia('Order/Confirmation', [
             'order' => $order,
         ]);
+    }
+
+    protected function clearCart()
+    {
+        // Удаление всех товаров в корзине текущего пользователя
+        Cart::where('user_id', Auth::id())->delete();
     }
 }
