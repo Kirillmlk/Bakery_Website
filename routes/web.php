@@ -43,22 +43,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/{order}/confirmation', [OrderController::class, 'confirmation'])
+        ->name('orders.confirmation');
+
     Route::middleware('admin')->group(function () {
         Route::get('/admin/orders', [MenuController::class, 'index'])->name('admin.orders.index');
+
+        Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+        Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+        Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
+        Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+        Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
     });
 });
 
+
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
-Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
-Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
 
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-Route::get('/orders/{order}/confirmation', [OrderController::class, 'confirmation'])
-    ->name('orders.confirmation');
 
 
 
